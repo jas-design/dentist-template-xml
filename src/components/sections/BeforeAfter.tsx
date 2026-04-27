@@ -35,23 +35,22 @@ const BeforeAfter = () => {
               referrerPolicy="no-referrer"
             />
             
-            {/* Before Image (Overlay) */}
+            {/* Before Image (Overlay with Clip Path) */}
             <div 
-              className="absolute inset-0 w-full h-full overflow-hidden border-r border-white/50"
-              style={{ width: `${sliderPosition}%` }}
+              className="absolute inset-0 w-full h-full overflow-hidden border-r border-white/50 z-10"
+              style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
             >
               <img 
                 src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=1200" 
                 alt="Before Whitening"
                 className="absolute inset-0 w-full h-full object-cover grayscale-[0.3] sepia-[0.3] brightness-[0.9]"
-                style={{ width: `${100 * (100 / sliderPosition)}%` }}
                 referrerPolicy="no-referrer"
               />
             </div>
 
             {/* Slider Handle */}
             <div 
-              className="absolute top-0 bottom-0 z-10"
+              className="absolute top-0 bottom-0 z-30"
               style={{ left: `${sliderPosition}%` }}
             >
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-[0_0_20px_rgba(51,153,166,0.3)] flex items-center justify-center border-2 border-white">
