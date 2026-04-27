@@ -174,6 +174,12 @@
                 <testimonial id="1" name="Robert Lee" role="Software Engineer" rating="4.7" avatar="https://i.pravatar.cc/100?u=robert">
                     <content>I want to say thank you to my doctor Steve! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus. Thank you for helping me overcome my fear of the dentist! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.</content>
                 </testimonial>
+                <testimonial id="2" name="Sarah Jenkins" role="Marketing Director" rating="5.0" avatar="https://i.pravatar.cc/100?u=sarah">
+                    <content>The best dental experience I've ever had. The staff was incredibly professional and the treatment was completely painless. Highly recommend to anyone looking for quality care.</content>
+                </testimonial>
+                <testimonial id="3" name="Michael Chen" role="Architecture Student" rating="4.9" avatar="https://i.pravatar.cc/100?u=michael">
+                    <content>State-of-the-art facilities and a very welcoming atmosphere. Dr. Lee explained everything clearly and made me feel at ease throughout my entire root canal procedure.</content>
+                </testimonial>
             </items>
         </testimonials>
 
