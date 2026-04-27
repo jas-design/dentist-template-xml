@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calendar, User, Phone, Mail, ArrowRight } from 'lucide-react';
+import { openCalendly } from '../../utils/config';
 
 const AppointmentBar = () => {
   return (
@@ -40,7 +41,10 @@ const AppointmentBar = () => {
             </div>
 
             <div className="lg:col-span-1">
-              <button className="btn-primary w-full py-4 rounded-xl shadow-lg shadow-primary/20 cursor-pointer">
+              <button 
+                onClick={openCalendly}
+                className="btn-primary w-full py-4 rounded-xl shadow-lg shadow-primary/20 cursor-pointer"
+              >
                 Book Now <ArrowRight size={20} />
               </button>
             </div>
@@ -50,5 +54,6 @@ const AppointmentBar = () => {
     </section>
   );
 };
+
 
 export default AppointmentBar;

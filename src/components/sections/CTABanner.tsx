@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calendar, Phone } from 'lucide-react';
+import { openCalendly } from '../../utils/config';
 
 const CTABanner = () => {
   return (
@@ -16,7 +17,10 @@ const CTABanner = () => {
               Don't wait for dental pain to start. Schedule your comprehensive oral exam and experience modern, gentle dentistry.
             </p>
             <div className="flex flex-wrap gap-6">
-              <button className="px-8 py-4 bg-white text-primary rounded-xl font-black uppercase tracking-widest text-sm shadow-xl hover:translate-y-[-2px] transition-all flex items-center gap-2 cursor-pointer">
+              <button 
+                onClick={openCalendly}
+                className="px-8 py-4 bg-white text-primary rounded-xl font-black uppercase tracking-widest text-sm shadow-xl hover:translate-y-[-2px] transition-all flex items-center gap-2 cursor-pointer"
+              >
                 Book Appointment <Calendar size={20} />
               </button>
               <a href="tel:+1987628745" className="px-8 py-4 bg-dark-navy text-white rounded-xl font-black uppercase tracking-widest text-sm shadow-xl hover:translate-y-[-2px] transition-all flex items-center gap-2">

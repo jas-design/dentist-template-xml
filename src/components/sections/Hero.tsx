@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, Phone, Star, ArrowRight } from 'lucide-react';
+import { openCalendly } from '../../utils/config';
 
 const Hero = () => {
   return (
@@ -32,7 +33,10 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12">
-              <button className="px-8 py-5 bg-primary text-white rounded-full font-bold text-sm tracking-widest uppercase hover:brightness-110 transition-all flex items-center gap-3 shadow-2xl shadow-primary/30 cursor-pointer">
+              <button 
+                onClick={openCalendly}
+                className="px-8 py-5 bg-primary text-white rounded-full font-bold text-sm tracking-widest uppercase hover:brightness-110 transition-all flex items-center gap-3 shadow-2xl shadow-primary/30 cursor-pointer"
+              >
                 Make An Appointment <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"><ArrowRight size={18} /></div>
               </button>
             </div>

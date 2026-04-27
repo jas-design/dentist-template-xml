@@ -1,5 +1,6 @@
 import React from 'react';
 import { Phone, Clock, Calendar } from 'lucide-react';
+import { openCalendly } from '../../utils/config';
 
 const InfoBar = () => {
   return (
@@ -26,7 +27,10 @@ const InfoBar = () => {
             </div>
           </div>
 
-          <button className="px-8 py-3 bg-primary text-white rounded-full font-bold text-sm tracking-tight hover:brightness-110 transition-all flex items-center gap-2 shadow-lg shadow-primary/20 cursor-pointer">
+          <button 
+            onClick={openCalendly}
+            className="px-8 py-3 bg-primary text-white rounded-full font-bold text-sm tracking-tight hover:brightness-110 transition-all flex items-center gap-2 shadow-lg shadow-primary/20 cursor-pointer"
+          >
             Make An Appointment <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center"><Calendar size={14} /></div>
           </button>
         </div>
@@ -34,5 +38,6 @@ const InfoBar = () => {
     </div>
   );
 };
+
 
 export default InfoBar;

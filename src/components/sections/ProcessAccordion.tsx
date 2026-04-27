@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Calendar, Heart, Star } from 'lucide-react';
+import { openCalendly } from '../../utils/config';
 
 const ProcessAccordion = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -61,7 +62,13 @@ const ProcessAccordion = () => {
                   className={`border-b border-slate-200 transition-all ${activeIndex === idx ? 'pb-6' : 'pb-4'}`}
                 >
                   <button
-                    onClick={() => setActiveIndex(activeIndex === idx ? -1 : idx)}
+                    onClick={() => {
+                      if (idx === 0) {
+                        openCalendly();
+                      } else {
+                        setActiveIndex(activeIndex === idx ? -1 : idx);
+                      }
+                    }}
                     className="w-full flex items-center justify-between text-left group"
                   >
                     <div className="flex items-center gap-4">
