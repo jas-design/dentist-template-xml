@@ -5,6 +5,7 @@
             <text_main>Dental Care</text_main>
             <text_sub>Dentist</text_sub>
             <icon>Calendar</icon>
+            <use_image_logo>false</use_image_logo>
         </logo>
         <colors>
             <primary>#3399A6</primary>

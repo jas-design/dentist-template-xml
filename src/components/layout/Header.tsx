@@ -40,27 +40,32 @@ const Header = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
-  const Logo = ({ isMobile = false }) => (
-    <Link to="/" className="flex items-center gap-3" onClick={isMobile ? () => setIsOpen(false) : undefined}>
-      {logoExists ? (
-        <img src={resolveImageUrl('images/logo.png')} alt="Logo" className={`${isMobile ? 'h-8' : 'h-10 lg:h-12'} w-auto object-contain`} />
-      ) : (
-        <>
-          <div className={`${isMobile ? 'w-8 h-8 text-base' : 'w-10 h-10 text-2xl'} bg-primary rounded-xl flex items-center justify-center text-white font-display font-black shadow-lg shadow-primary/20 transition-transform hover:scale-110`}>
-            {branding.logo.textMain.charAt(0)}
-          </div>
-          <div className="flex flex-col -gap-1">
-            <span className={`${isMobile ? 'text-lg' : 'text-xl lg:text-2xl'} font-display font-black text-dark-navy leading-none tracking-tight`}>
-              {branding.logo.textMain}
-            </span>
-            <span className={`${isMobile ? 'text-[8px]' : 'text-[10px]'} font-display font-bold text-primary tracking-[0.3em] uppercase leading-none`}>
-              {branding.logo.textSub}
-            </span>
-          </div>
-        </>
-      )}
-    </Link>
-  );
+  const Logo = ({ isMobile = false }) => {
+    const useImage = branding.logo.useImageLogo === 'true';
+    const showImage = useImage && logoExists;
+
+    return (
+      <Link to="/" className="flex items-center gap-3" onClick={isMobile ? () => setIsOpen(false) : undefined}>
+        {showImage ? (
+          <img src={resolveImageUrl('images/logo.png')} alt="Logo" className={`${isMobile ? 'h-8' : 'h-10 lg:h-12'} w-auto object-contain`} />
+        ) : (
+          <>
+            <div className={`${isMobile ? 'w-8 h-8 text-base' : 'w-10 h-10 text-2xl'} bg-primary rounded-xl flex items-center justify-center text-white font-display font-black shadow-lg shadow-primary/20 transition-transform hover:scale-110`}>
+              {branding.logo.textMain.charAt(0)}
+            </div>
+            <div className="flex flex-col -gap-1">
+              <span className={`${isMobile ? 'text-lg' : 'text-xl lg:text-2xl'} font-display font-black text-dark-navy leading-none tracking-tight`}>
+                {branding.logo.textMain}
+              </span>
+              <span className={`${isMobile ? 'text-[8px]' : 'text-[10px]'} font-display font-bold text-primary tracking-[0.3em] uppercase leading-none`}>
+                {branding.logo.textSub}
+              </span>
+            </div>
+          </>
+        )}
+      </Link>
+    );
+  };
 
   return (
     <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${(isScrolled || location.pathname !== '/') ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
