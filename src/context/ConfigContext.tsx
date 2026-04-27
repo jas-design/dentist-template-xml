@@ -32,6 +32,19 @@ export const ConfigProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     loadConfig();
   }, []);
 
+  useEffect(() => {
+    if (config?.branding?.colors) {
+      const colors = config.branding.colors;
+      const root = document.documentElement;
+      
+      if (colors.primary) root.style.setProperty('--color-primary', colors.primary);
+      if (colors.secondary) root.style.setProperty('--color-secondary', colors.secondary);
+      if (colors.accentBlue) root.style.setProperty('--color-accent-blue', colors.accentBlue);
+      if (colors.darkNavy) root.style.setProperty('--color-dark-navy', colors.darkNavy);
+      if (colors.lightBg) root.style.setProperty('--color-light-bg', colors.lightBg);
+    }
+  }, [config]);
+
   return (
     <ConfigContext.Provider value={{ config, loading, error, refreshConfig: loadConfig }}>
       {children}
