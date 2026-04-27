@@ -1,8 +1,15 @@
 import React from 'react';
 import { Phone, Clock, Calendar } from 'lucide-react';
 import { openCalendly } from '../../utils/config';
+import { useConfig } from '../../context/ConfigContext';
 
 const InfoBar = () => {
+  const { config, loading } = useConfig();
+
+  if (loading || !config) return null;
+
+  const { contactInfo } = config;
+
   return (
     <div className="bg-dark-navy py-6 relative z-30">
       <div className="container mx-auto px-4">
@@ -13,7 +20,7 @@ const InfoBar = () => {
             </div>
             <div>
               <p className="text-white text-base font-bold">Need Dental Services?</p>
-              <p className="text-white/60 text-sm">Call on : (+01) 987 828 745</p>
+              <p className="text-white/60 text-sm">Call on : {contactInfo.phoneMain}</p>
             </div>
           </div>
 
@@ -23,7 +30,7 @@ const InfoBar = () => {
             </div>
             <div>
               <p className="text-white text-base font-bold">Opening Hours</p>
-              <p className="text-white/60 text-sm">Mon to Sat 9:00AM to 9:00PM</p>
+              <p className="text-white/60 text-sm">{contactInfo.workingHours}</p>
             </div>
           </div>
 
@@ -39,5 +46,5 @@ const InfoBar = () => {
   );
 };
 
-
 export default InfoBar;
+

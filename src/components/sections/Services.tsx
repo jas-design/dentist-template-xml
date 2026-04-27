@@ -3,17 +3,25 @@ import { motion } from 'motion/react';
 import { SERVICES } from '../../constants';
 import * as LucideIcons from 'lucide-react';
 import { ArrowRight } from 'lucide-react';
+import { useConfig } from '../../context/ConfigContext';
 
 const Services = () => {
+  const { config, loading } = useConfig();
+
+  if (loading || !config) return null;
+
+  const section = config.sections.services;
+  const services = section.items || SERVICES;
+
   return (
     <section className="py-24 bg-light-bg" id="services">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h5 className="text-primary font-bold tracking-widest uppercase mb-4 text-sm flex items-center justify-center gap-2">
-            <span className="w-8 h-[2px] bg-primary"></span> Our Services
+            <span className="w-8 h-[2px] bg-primary"></span> {section.tagline}
           </h5>
           <h2 className="section-title mb-4 font-black lg:text-6xl">
-            Hight Quality <span className="text-primary">Services for You.</span>
+            {section.title}
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto leading-relaxed font-bold">
             We are committed to sustainability, eco-friendly initiatives.
@@ -21,11 +29,11 @@ const Services = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {SERVICES.map((service, index) => {
+          {services.map((service: any, index: number) => {
             const IconComponent = (LucideIcons as any)[service.icon] || LucideIcons.Stethoscope;
             return (
               <motion.div
-                key={service.id}
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

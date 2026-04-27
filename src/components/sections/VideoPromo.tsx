@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Play, X } from 'lucide-react';
+import { useConfig } from '../../context/ConfigContext';
+import { resolveImageUrl } from '../../utils/config';
 
 const VideoPromo = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { config, loading } = useConfig();
+
+  if (loading || !config) return null;
+
+  const section = config.sections.videoPromo;
 
   return (
     <section className="py-24">
       <div className="container mx-auto px-4">
         <div className="relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl group">
           <img 
-            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1600&h=800" 
+            src={resolveImageUrl(section.thumbnail)} 
             alt="Clinic Video" 
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             referrerPolicy="no-referrer"
@@ -23,16 +30,16 @@ const VideoPromo = () => {
               className="max-w-3xl"
             >
               <h5 className="text-white font-bold tracking-widest uppercase mb-4 text-sm flex items-center justify-center gap-2">
-                <span className="w-8 h-[2px] bg-primary"></span> Visit Clinic
+                <span className="w-8 h-[2px] bg-primary"></span> {section.tagline}
               </h5>
               <h2 className="text-4xl lg:text-6xl font-display font-black text-white mb-8 leading-tight">
-                Comprehensive Dental Care For All Ages
+                {section.title}
               </h2>
               <button 
                 onClick={() => setIsOpen(true)}
                 className="px-8 py-4 bg-white text-dark-navy rounded-full font-bold text-sm tracking-widest uppercase hover:brightness-110 transition-all flex items-center gap-3 shadow-2xl shadow-black/20 mx-auto cursor-pointer group"
               >
-                Play Video <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-all"><Play size={16} fill="currentColor" /></div>
+                {section.buttonText} <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-all"><Play size={16} fill="currentColor" /></div>
               </button>
             </motion.div>
           </div>
@@ -63,7 +70,7 @@ const VideoPromo = () => {
               <iframe 
                 width="100%" 
                 height="100%" 
-                src="https://www.youtube.com/embed/S70P17I7u6s?autoplay=1" 
+                src={section.videoUrl} 
                 title="Dental Clinic Tour" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

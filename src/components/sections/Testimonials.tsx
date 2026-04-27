@@ -2,8 +2,17 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { TESTIMONIALS } from '../../constants';
+import { useConfig } from '../../context/ConfigContext';
+import { resolveImageUrl } from '../../utils/config';
 
 const Testimonials = () => {
+  const { config, loading } = useConfig();
+
+  if (loading || !config) return null;
+
+  const section = config.sections.testimonials;
+  const testimonials = section.items || TESTIMONIALS;
+
   return (
     <section className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4">
@@ -16,7 +25,7 @@ const Testimonials = () => {
           >
             <div className="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white aspect-[4/5]">
               <img 
-                src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=800&h=1000" 
+                src={resolveImageUrl(section.image)} 
                 alt="Clinic service"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
@@ -25,37 +34,37 @@ const Testimonials = () => {
             {/* Rating Card Overlay */}
             <div className="absolute -bottom-10 -right-10 bg-dark-navy p-8 rounded-[2rem] shadow-2xl border-4 border-white text-white max-w-[280px]">
               <div className="flex items-center gap-2 mb-4">
-                <span className="text-4xl font-black">4.7/5</span>
+                <span className="text-4xl font-black">{section.rating}</span>
                 <div className="flex text-primary">
                   {[1, 2, 3, 4, 5].map(i => <Star key={i} size={14} fill="currentColor" />)}
                 </div>
               </div>
               <p className="text-sm text-white/60 leading-relaxed font-bold">
-                This rate is given by user after visiting our location
+                {section.ratingText}
               </p>
             </div>
           </motion.div>
 
           <div>
             <h5 className="text-primary font-bold tracking-widest uppercase mb-4 text-sm flex items-center gap-2">
-              <span className="w-8 h-[2px] bg-primary"></span> Testimonials
+              <span className="w-8 h-[2px] bg-primary"></span> {section.tagline}
             </h5>
             <h2 className="section-title mb-6 font-black lg:text-6xl leading-[1]">
-              Some <span className="text-primary">Heart to Heart</span> Feedback.
+              {section.title}
             </h2>
             
             <div className="relative pt-12">
               <Quote className="absolute top-0 left-0 text-primary opacity-20" size={60} />
               <p className="text-xl lg:text-2xl text-slate-500 font-bold leading-relaxed mb-10 pl-4 border-l-4 border-primary">
-                "{TESTIMONIALS[0].content}"
+                "{testimonials[0].content || testimonials[0].text}"
               </p>
               
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <img src={TESTIMONIALS[0].avatar} alt={TESTIMONIALS[0].name} className="w-16 h-16 rounded-full object-cover shadow-lg" referrerPolicy="no-referrer" />
+                  <img src={resolveImageUrl(testimonials[0].avatar || testimonials[0].image)} alt={testimonials[0].name} className="w-16 h-16 rounded-full object-cover shadow-lg" referrerPolicy="no-referrer" />
                   <div>
-                    <h4 className="text-xl font-black text-dark-navy tracking-tight">{TESTIMONIALS[0].name}</h4>
-                    <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">{TESTIMONIALS[0].role}</p>
+                    <h4 className="text-xl font-black text-dark-navy tracking-tight">{testimonials[0].name}</h4>
+                    <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">{testimonials[0].role}</p>
                   </div>
                 </div>
 

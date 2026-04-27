@@ -157,6 +157,14 @@ export async function openCalendly() {
   }
 }
 
+export function resolveImageUrl(url: string): string {
+  if (!url) return '';
+  if (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/')) return url;
+  
+  const baseUrl = import.meta.env.BASE_URL || '/';
+  return `${baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'}${url}`;
+}
+
 declare global {
   interface Window {
     Calendly: any;

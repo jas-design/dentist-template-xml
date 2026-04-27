@@ -1,10 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useConfig } from '../../context/ConfigContext';
+import { resolveImageUrl } from '../../utils/config';
 
 const BeforeAfter = () => {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { config, loading } = useConfig();
+
+  if (loading || !config) return null;
+
+  const section = config.sections.beforeAfter;
 
   const handleMouseMove = (e: React.MouseEvent | React.TouchEvent) => {
     if (!containerRef.current) return;
@@ -29,7 +36,7 @@ const BeforeAfter = () => {
           >
             {/* After Image (Base) */}
             <img 
-              src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=1200" 
+              src={resolveImageUrl(section.imageAfter)} 
               alt="After Whitening"
               className="absolute inset-0 w-full h-full object-cover"
               referrerPolicy="no-referrer"
@@ -41,7 +48,7 @@ const BeforeAfter = () => {
               style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
             >
               <img 
-                src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=1200" 
+                src={resolveImageUrl(section.imageBefore)} 
                 alt="Before Whitening"
                 className="absolute inset-0 w-full h-full object-cover grayscale-[0.3] sepia-[0.3] brightness-[0.9]"
                 referrerPolicy="no-referrer"
@@ -77,16 +84,16 @@ const BeforeAfter = () => {
             viewport={{ once: true }}
           >
             <h5 className="text-primary font-bold tracking-widest uppercase mb-4 text-sm flex items-center gap-2">
-              <span className="w-8 h-[2px] bg-primary"></span> Before and after teeth whitening
+              <span className="w-8 h-[2px] bg-primary"></span> {section.tagline}
             </h5>
             <h2 className="text-4xl lg:text-6xl font-display font-black text-white mb-8 leading-tight">
-              Get a <span className="text-primary">Hollywood Smile</span> Today!
+              {section.title}
             </h2>
             <p className="text-white/60 mb-8 leading-relaxed font-medium text-lg">
-              Sed elementum tortor sit amet lacus feugiat aliquam eu euismod dui, sit finibus neque quam nisl, euismod vitae sem in, tempor auctor nulla facilisis in aliquam laoreet semper quam per inceptos.
+              {section.descriptionMain}
             </p>
             <p className="text-white/60 mb-10 leading-relaxed font-medium">
-              Amet lacus feugiat aliquam eu euismod dui, sit amet finibus neque quam nisl euismod vitae sem tempor.
+              {section.descriptionSub}
             </p>
             
             <div className="flex items-center gap-4">
@@ -96,7 +103,7 @@ const BeforeAfter = () => {
                   <circle cx="12" cy="7" r="4" />
                 </svg>
               </div>
-              <h4 className="text-xl font-display font-black text-white">Dr. John Boss</h4>
+              <h4 className="text-xl font-display font-black text-white">{section.doctorName}</h4>
             </div>
           </motion.div>
         </div>

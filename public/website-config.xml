@@ -136,15 +136,15 @@
             <description_main>Sed elementum tortor sit amet lacus feugiat aliquam eu euismod dui, sit finibus neque quam nisl, euismod vitae sem in, tempor auctor nulla facilisis in aliquam laoreet semper quam per inceptos.</description_main>
             <description_sub>Amet lacus feugiat aliquam eu euismod dui, sit amet finibus neque quam nisl euismod vitae sem tempor.</description_sub>
             <doctor_name>Dr. John Boss</doctor_name>
-            <image_before>https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&amp;fit=crop&amp;q=80&amp;w=1200</image_before>
-            <image_after>https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&amp;fit=crop&amp;q=80&amp;w=1200</image_after>
+            <image_before>images/teeth_before.jpg</image_before>
+            <image_after>images/teeth_after.jpg</image_after>
         </before_after>
 
         <process_accordion>
             <tagline>How It Works</tagline>
             <title>What We Do for Your Teeth</title>
             <description>We are committed to sustainability, Our clinic practices eco-friendly initiatives like digital records to reduce paper waste and energy-efficient equipment.</description>
-            <image>https://images.unsplash.com/photo-1606811919046-44487f8b9e67?auto=format&amp;fit=crop&amp;q=80&amp;w=800&amp;h=1000</image>
+            <image>https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&amp;fit=crop&amp;q=80&amp;w=800&amp;h=1000</image>
             <items>
                 <item icon="Calendar" title="Book An Appointment" content="The goal of our clinic is to provide friendly, caring dentistry and the highest level of general, cosmetic, ents." />
                 <item icon="Heart" title="What Conditions Can Manual Therapy Treat?" content="The goal of our clinic is to provide friendly, caring dentistry and the highest level of general, cosmetic, ents." />
@@ -158,8 +158,8 @@
             <description>We are committed to sustainability, eco-friendly initiatives.</description>
             <members>
                 <member id="1" name="Dr. Johan Joe" specialty="Lead Dentist" experience="15+" patients="2k+" image="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400" />
-                <member id="2" name="Dr. Mike Johnson" specialty="Senior Dentist" experience="12+" patients="1.5k+" image="https://images.unsplash.com/photo-1612349317150-e413f6a5b1f8?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400" />
-                <member id="3" name="Dr. Alison Banson" specialty="Orthodontist" experience="10+" patients="1.2k+" image="https://images.unsplash.com/photo-1559839734-2b71f1536783?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400" />
+                <member id="2" name="Dr. Alice Johnson" specialty="Senior Dentist" experience="12+" patients="1.5k+" image="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400" />
+                <member id="3" name="Dr. Alison Banson" specialty="Orthodontist" experience="10+" patients="1.2k+" image="https://images.unsplash.com/photo-1659353888906-adb3e0041693?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400" />
                 <member id="4" name="Dr. Christopher Case" specialty="Periodontist" experience="18+" patients="3k+" image="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400" />
             </members>
         </team>
@@ -169,7 +169,7 @@
             <title>Some Heart to Heart Feedback.</title>
             <rating>4.7/5</rating>
             <rating_desc>This rate is given by user after visiting our location</rating_desc>
-            <image_main>https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&amp;fit=crop&amp;q=80&amp;w=800&amp;h=1000</image_main>
+            <image_main>https://images.unsplash.com/photo-1681939282781-341ac4f61996?auto=format&amp;fit=crop&amp;q=80&amp;w=800&amp;h=1000</image_main>
             <items>
                 <testimonial id="1" name="Robert Lee" role="Software Engineer" rating="4.7" avatar="https://i.pravatar.cc/100?u=robert">
                     <content>I want to say thank you to my doctor Steve! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus. Thank you for helping me overcome my fear of the dentist! Vivamus sagittis massa vitae bibendum rhoncus. Duis cursus.</content>
