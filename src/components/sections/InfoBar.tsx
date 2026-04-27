@@ -3,40 +3,31 @@ import { Phone, Clock, Calendar } from 'lucide-react';
 
 const InfoBar = () => {
   return (
-    <div className="container mx-auto px-4 -mt-12 relative z-30">
-      <div className="glass-morphism rounded-2xl shadow-2xl overflow-hidden grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-100">
-        <div className="p-8 flex items-center gap-6">
-          <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-            <Phone size={28} />
-          </div>
-          <div>
-            <p className="text-slate-500 text-sm font-bold uppercase tracking-wider">Quick Contact</p>
-            <h4 className="text-dark-navy text-xl font-black">(+1) 987 628 745</h4>
-          </div>
-        </div>
-
-        <div className="p-8 flex items-center gap-6">
-          <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-            <Clock size={28} />
-          </div>
-          <div>
-            <p className="text-slate-500 text-sm font-bold uppercase tracking-wider">Opening Hours</p>
-            <h4 className="text-dark-navy text-xl font-black">Mon - Sat: 9am - 8pm</h4>
-          </div>
-        </div>
-
-        <div className="p-8 flex items-center justify-between gap-6">
-          <div className="flex items-center gap-6">
-            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-              <Calendar size={28} />
+    <div className="bg-dark-navy py-6 relative z-30">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-wrap items-center justify-between gap-8">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-primary">
+              <Phone size={24} />
             </div>
             <div>
-              <p className="text-slate-500 text-sm font-bold uppercase tracking-wider">Location</p>
-              <h4 className="text-dark-navy text-xl font-black">New York, USA</h4>
+              <p className="text-white text-base font-bold">Need Dental Services?</p>
+              <p className="text-white/60 text-sm">Call on : (+01) 987 828 745</p>
             </div>
           </div>
-          <button className="bg-primary p-4 rounded-xl text-white hover:scale-110 transition-all shadow-lg shadow-primary/30 cursor-pointer">
-            <Calendar size={24} />
+
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-primary">
+              <Clock size={24} />
+            </div>
+            <div>
+              <p className="text-white text-base font-bold">Opening Hours</p>
+              <p className="text-white/60 text-sm">Mon to Sat 9:00AM to 9:00PM</p>
+            </div>
+          </div>
+
+          <button className="px-8 py-3 bg-primary text-white rounded-full font-bold text-sm tracking-tight hover:brightness-110 transition-all flex items-center gap-2 shadow-lg shadow-primary/20 cursor-pointer">
+            Make An Appointment <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center"><Calendar size={14} /></div>
           </button>
         </div>
       </div>

@@ -9,12 +9,14 @@ const Services = () => {
     <section className="py-24 bg-light-bg" id="services">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h5 className="text-primary font-bold tracking-widest uppercase mb-4">Our Services</h5>
-          <h2 className="section-title mb-4">
-            High Quality <span className="text-primary">Services for You</span>
+          <h5 className="text-primary font-bold tracking-widest uppercase mb-4 text-sm flex items-center justify-center gap-2">
+            <span className="w-8 h-[2px] bg-primary"></span> Our Services
+          </h5>
+          <h2 className="section-title mb-4 font-black lg:text-6xl">
+            Hight Quality <span className="text-primary">Services for You.</span>
           </h2>
-          <p className="text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            Our clinic is dedicated to provide full service dentistry for patients of all ages. Experience high-quality care in a comfortable environment.
+          <p className="text-slate-400 max-w-2xl mx-auto leading-relaxed font-bold">
+            We are committed to sustainability, eco-friendly initiatives.
           </p>
         </div>
 
@@ -24,32 +26,33 @@ const Services = () => {
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="p-8 bg-white border border-slate-100 rounded-[2rem] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative group overflow-hidden"
+                className="p-10 bg-white border border-slate-50 rounded-[2.5rem] shadow-[0_20px_50px_-20px_rgba(0,0,0,0.05)] hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] transition-all duration-500 group relative border-b-4 border-b-transparent hover:border-b-primary"
               >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-[4rem] transition-all group-hover:scale-110 group-hover:bg-primary/10" />
-                
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-inner">
-                  <IconComponent size={32} />
+                <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                  <IconComponent size={32} strokeWidth={1.5} />
                 </div>
                 
                 <h3 className="text-xl font-display font-black text-dark-navy mb-4 group-hover:text-primary transition-colors leading-tight">{service.title}</h3>
-                <p className="text-slate-500 mb-6 text-sm leading-relaxed">{service.description}</p>
+                <p className="text-slate-500 mb-8 text-sm leading-relaxed font-medium">{service.description}</p>
                 
-                <button className="flex items-center gap-2 text-primary font-bold group/btn text-sm uppercase tracking-wider cursor-pointer">
-                  Learn More <ArrowRight size={18} className="group-hover/btn:translate-x-2 transition-transform" />
+                <button className="flex items-center gap-2 text-dark-navy font-black text-xs uppercase tracking-widest cursor-pointer group/btn">
+                  Read More <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-all"><ArrowRight size={14} /></div>
                 </button>
               </motion.div>
             );
           })}
         </div>
         
-        <div className="mt-16 text-center">
-          <button className="btn-primary py-4 px-12 shadow-xl shadow-primary/20 cursor-pointer">
-            View All Services <ArrowRight size={20} />
+        <div className="text-center mt-12 mb-16">
+          <p className="text-slate-500 max-w-2xl mx-auto leading-relaxed font-bold mb-8">
+            We believe in using the latest technology and techniques to ensure the best outcomes for our patients.
+          </p>
+          <button className="px-10 py-5 bg-primary text-white rounded-full font-bold text-sm tracking-widest uppercase hover:brightness-110 transition-all flex items-center gap-3 shadow-2xl shadow-primary/30 mx-auto group">
+            View All Service <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-all"><ArrowRight size={18} /></div>
           </button>
         </div>
       </div>

@@ -8,12 +8,14 @@ const Team = () => {
     <section className="py-24 bg-light-bg" id="team">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h5 className="text-primary font-bold tracking-widest uppercase mb-4">Our Team</h5>
-          <h2 className="section-title">
-            Meet Our <span className="text-primary">Expert Dentists</span>
+          <h5 className="text-primary font-bold tracking-widest uppercase mb-4 text-sm flex items-center justify-center gap-2">
+            <span className="w-8 h-[2px] bg-primary"></span> Our Team
+          </h5>
+          <h2 className="section-title font-black lg:text-6xl">
+            Our <span className="text-primary">Friendly Dentists</span> Team
           </h2>
-          <p className="text-slate-500 mt-4 max-w-2xl mx-auto leading-relaxed">
-            Our highly skilled professionals are dedicated to providing you with the highest quality of care and state-of-the-art treatments.
+          <p className="text-slate-400 mt-4 max-w-2xl mx-auto leading-relaxed font-bold">
+            We are committed to sustainability, eco-friendly initiatives.
           </p>
         </div>
 
@@ -25,26 +27,19 @@ const Team = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-[2.5rem] border border-slate-50 overflow-hidden group shadow-sm hover:shadow-2xl transition-all duration-500"
+              className="bg-white rounded-[2.5rem] border border-slate-50 overflow-hidden group shadow-[0_20px_50px_-20px_rgba(0,0,0,0.05)] hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] transition-all duration-500"
             >
-              <div className="relative overflow-hidden aspect-[4/5] m-3 rounded-[2rem]">
+              <div className="relative overflow-hidden aspect-[4/5] m-4 rounded-[2rem]">
                 <img
                   src={member.image}
                   alt={member.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                  {[Facebook, Twitter, Instagram].map((Icon, i) => (
-                    <a key={i} href="#" className="w-10 h-10 rounded-xl bg-white text-primary flex items-center justify-center hover:bg-dark-navy hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300" style={{ transitionDelay: `${i * 50}ms` }}>
-                      <Icon size={18} />
-                    </a>
-                  ))}
-                </div>
               </div>
-              <div className="p-6 text-center">
-                <h4 className="text-xl font-black text-dark-navy mb-1 uppercase tracking-tight">{member.name}</h4>
-                <p className="text-primary text-sm font-bold tracking-widest uppercase">{member.specialty}</p>
+              <div className="px-6 pb-8 text-center">
+                <h4 className="text-xl font-black text-dark-navy mb-1">{member.name}</h4>
+                <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">{member.specialty}</p>
               </div>
             </motion.div>
           ))}

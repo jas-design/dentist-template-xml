@@ -8,47 +8,50 @@ const Blog = () => {
     <section className="py-24 bg-white" id="blog">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h5 className="text-primary font-bold tracking-widest uppercase mb-4">Latest Insights</h5>
-          <h2 className="section-title">
-            Our <span className="text-primary">Latest Articles</span>
+          <h5 className="text-primary font-bold tracking-widest uppercase mb-4 text-sm flex items-center justify-center gap-2">
+            <span className="w-8 h-[2px] bg-primary"></span> Latest News
+          </h5>
+          <h2 className="section-title mb-4 font-black lg:text-6xl">
+            Our Latest <span className="text-primary">Direct Health Blog.</span>
           </h2>
+          <p className="text-slate-400 max-w-2xl mx-auto leading-relaxed font-bold">
+            We are committed to sustainability, eco-friendly initiatives.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {BLOG_POSTS.map((post, index) => (
             <motion.div
               key={post.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-light-bg rounded-[2.5rem] overflow-hidden border border-slate-50 group hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
+              className="bg-white rounded-[2.5rem] overflow-hidden border border-slate-50 group hover:shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] transition-all duration-500"
             >
-              <div className="relative h-64 overflow-hidden m-3 rounded-[2rem]">
+              <div className="relative h-64 overflow-hidden m-4 rounded-[2rem]">
                 <img
                   src={post.image}
                   alt={post.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute top-4 right-4 px-4 py-2 bg-primary text-white text-xs font-black rounded-xl shadow-lg uppercase tracking-widest">
+                <div className="absolute top-4 right-4 px-4 py-2 bg-primary text-white text-[10px] font-black rounded-lg shadow-lg uppercase tracking-[0.2em]">
                   {post.date}
                 </div>
               </div>
-              <div className="p-8">
-                <div className="flex items-center gap-4 text-slate-400 text-xs mb-4 font-bold uppercase tracking-wider">
-                  <div className="flex items-center gap-1 text-primary">
-                    <Calendar size={14} /> {post.category}
-                  </div>
+              <div className="px-8 pb-10 pt-4">
+                <div className="flex items-center gap-2 text-primary text-[10px] mb-4 font-black uppercase tracking-[0.2em]">
+                   {post.category}
                 </div>
                 <h3 className="text-xl font-display font-black text-dark-navy mb-4 group-hover:text-primary transition-colors leading-tight">
                   {post.title}
                 </h3>
-                <p className="text-slate-500 mb-6 text-sm leading-relaxed line-clamp-2">
+                <p className="text-slate-500 mb-8 text-sm leading-relaxed font-medium line-clamp-2">
                   {post.excerpt}
                 </p>
-                <button className="flex items-center gap-2 text-primary font-black uppercase tracking-widest text-xs group/btn cursor-pointer">
-                  Read Article <ArrowRight size={16} className="group-hover/btn:translate-x-2 transition-transform" />
+                <button className="flex items-center gap-2 text-dark-navy font-black uppercase tracking-widest text-xs group/btn cursor-pointer">
+                  Read Article <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover/btn:bg-primary group-hover/btn:text-white transition-all"><ArrowRight size={14} /></div>
                 </button>
               </div>
             </motion.div>

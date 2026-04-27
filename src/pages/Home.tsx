@@ -3,15 +3,13 @@ import Hero from '../components/sections/Hero';
 import InfoBar from '../components/sections/InfoBar';
 import Services from '../components/sections/Services';
 import About from '../components/sections/About';
-import AppointmentBar from '../components/sections/AppointmentBar';
+import VideoPromo from '../components/sections/VideoPromo';
+import Diagnosis from '../components/sections/Diagnosis';
 import Stats from '../components/sections/Stats';
-import Testimonials from '../components/sections/Testimonials';
-import Insurance from '../components/sections/Insurance';
-import FAQ from '../components/sections/FAQ';
+import ProcessAccordion from '../components/sections/ProcessAccordion';
 import Team from '../components/sections/Team';
-import CTABanner from '../components/sections/CTABanner';
+import Testimonials from '../components/sections/Testimonials';
 import Blog from '../components/sections/Blog';
-import ContactSection from '../components/sections/ContactSection';
 
 const Home = () => {
   return (
@@ -20,15 +18,13 @@ const Home = () => {
       <InfoBar />
       <About />
       <Services />
+      <VideoPromo />
+      <Diagnosis />
       <Stats />
-      <AppointmentBar />
-      <Insurance />
-      <Testimonials />
-      <FAQ />
+      <ProcessAccordion />
       <Team />
-      <CTABanner />
+      <Testimonials />
       <Blog />
-      <ContactSection />
     </main>
   );
 };
