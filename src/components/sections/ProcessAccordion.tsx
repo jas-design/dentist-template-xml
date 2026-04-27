@@ -56,11 +56,7 @@ const ProcessAccordion = () => {
                   >
                     <button
                       onClick={() => {
-                        if (idx === 0) {
-                          openCalendly();
-                        } else {
-                          setActiveIndex(activeIndex === idx ? -1 : idx);
-                        }
+                        setActiveIndex(activeIndex === idx ? -1 : idx);
                       }}
                       className="w-full flex items-center justify-between text-left group"
                     >
@@ -86,7 +82,7 @@ const ProcessAccordion = () => {
                           className="overflow-hidden"
                         >
                           <p className="pt-4 pl-14 text-slate-500 font-medium leading-relaxed">
-                            {item.value}
+                            {item.content || item.value}
                           </p>
                         </motion.div>
                       )}
