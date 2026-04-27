@@ -112,7 +112,7 @@
             <tagline>WHY CHOOSE US</tagline>
             <title>Diagnosis of Dental Diseases</title>
             <description>We are committed to sustainability, eco-friendly initiatives.</description>
-            <tooth_image>https://img.freepik.com/premium-photo/high-quality-3d-model-human-tooth-it-can-be-used-health-projects_545445-3127.jpg?w=800</tooth_image>
+            <tooth_image>images/tooth.webp</tooth_image>
             <features>
                 <feature icon="Users" title="Experienced Doctor" description="The goal of our clinic is to provide friendly, caring dentistry and the." />
                 <feature icon="Heart" title="Personalized Care" description="The goal of our clinic is to provide friendly, caring dentistry and the." />

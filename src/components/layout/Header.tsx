@@ -3,12 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Calendar } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { openCalendly } from '../../utils/config';
+import { useConfig } from '../../context/ConfigContext';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoExists, setLogoExists] = useState(false);
   const location = useLocation();
+  const { config, loading } = useConfig();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +27,10 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  if (loading || !config) return null;
+
+  const { branding, contactInfo } = config;
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
@@ -40,14 +46,14 @@ const Header = () => {
       ) : (
         <>
           <div className={`${isMobile ? 'w-8 h-8 text-base' : 'w-10 h-10 text-2xl'} bg-primary rounded-xl flex items-center justify-center text-white font-display font-black shadow-lg shadow-primary/20 transition-transform hover:scale-110`}>
-            D
+            {branding.logo.textMain.charAt(0)}
           </div>
           <div className="flex flex-col -gap-1">
             <span className={`${isMobile ? 'text-lg' : 'text-xl lg:text-2xl'} font-display font-black text-dark-navy leading-none tracking-tight`}>
-              Dental Care
+              {branding.logo.textMain}
             </span>
             <span className={`${isMobile ? 'text-[8px]' : 'text-[10px]'} font-display font-bold text-primary tracking-[0.3em] uppercase leading-none`}>
-              Clinic
+              {branding.logo.textSub}
             </span>
           </div>
         </>
@@ -129,8 +135,8 @@ const Header = () => {
                 </button>
                 <div className="mt-8 pt-8 border-t border-slate-100">
                   <p className="text-slate-500 mb-2">Need Help?</p>
-                  <a href="tel:+1987628745" className="text-xl font-bold text-primary flex items-center gap-2">
-                    <Phone size={20} /> (+1) 987 628 745
+                  <a href={`tel:${contactInfo.phoneMain}`} className="text-xl font-bold text-primary flex items-center gap-2">
+                    <Phone size={20} /> {contactInfo.phoneMain}
                   </a>
                 </div>
               </div>

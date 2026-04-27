@@ -2,8 +2,15 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, Phone, Star, ArrowRight } from 'lucide-react';
 import { openCalendly } from '../../utils/config';
+import { useConfig } from '../../context/ConfigContext';
 
 const Hero = () => {
+  const { config, loading } = useConfig();
+
+  if (loading || !config) return null;
+
+  const section = config.sections.hero;
+
   return (
     <section className="relative pt-32 pb-20 overflow-hidden bg-linear-to-b from-primary/5 to-white">
       {/* Decorative elements */}
@@ -25,11 +32,11 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl lg:text-[5.5rem] font-display font-black leading-[1] text-dark-navy mb-8 tracking-tight">
-              Experience <span className="text-primary">Dental Excellence</span> with a Gentle Touch
+              {section.title}
             </h1>
             
             <p className="text-lg text-slate-500 mb-10 max-w-xl leading-relaxed">
-              It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+              {section.description}
             </p>
 
             <div className="flex flex-wrap gap-4 mb-12">
@@ -37,18 +44,18 @@ const Hero = () => {
                 onClick={openCalendly}
                 className="px-8 py-5 bg-primary text-white rounded-full font-bold text-sm tracking-widest uppercase hover:brightness-110 transition-all flex items-center gap-3 shadow-2xl shadow-primary/30 cursor-pointer"
               >
-                Make An Appointment <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"><ArrowRight size={18} /></div>
+                {section.buttonText} <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center"><ArrowRight size={18} /></div>
               </button>
             </div>
 
             <div className="flex items-center gap-4">
-              <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Google Rating <span className="text-dark-navy">5.0</span></p>
+              <p className="text-slate-400 text-sm font-bold uppercase tracking-widest">Google Rating <span className="text-dark-navy">{section.googleRating}</span></p>
               <div className="flex text-secondary">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <Star key={i} size={14} fill="currentColor" />
                 ))}
               </div>
-              <p className="border-l border-slate-200 pl-4 text-slate-400 text-sm font-bold uppercase tracking-widest">Based On 492 Reviews</p>
+              <p className="border-l border-slate-200 pl-4 text-slate-400 text-sm font-bold uppercase tracking-widest">Based On {section.reviewCount}</p>
             </div>
           </motion.div>
 
@@ -62,7 +69,7 @@ const Hero = () => {
               {/* Main Image with rounded-full border like the image */}
               <div className="relative aspect-square rounded-full overflow-hidden border-[1.5rem] border-white shadow-[0_40px_100px_-20px_rgba(0,0,0,0.15)] bg-slate-100">
                 <img
-                  src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1000&h=1000"
+                  src={section.imageMain}
                   alt="Doctor"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
@@ -76,10 +83,10 @@ const Hero = () => {
                 transition={{ delay: 1 }}
                 className="absolute top-1/2 -left-12 -translate-y-1/2 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 border border-slate-50 z-20"
               >
-                <img src="https://i.pravatar.cc/100?u=dent1" className="w-12 h-12 rounded-full object-cover" referrerPolicy="no-referrer" />
+                <img src={section.doctorAvatar} className="w-12 h-12 rounded-full object-cover" referrerPolicy="no-referrer" />
                 <div>
-                  <h4 className="font-display font-black text-dark-navy text-sm">Dr. Clara Lee</h4>
-                  <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Dentist</p>
+                  <h4 className="font-display font-black text-dark-navy text-sm">{section.doctorName}</h4>
+                  <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{section.doctorRole}</p>
                 </div>
               </motion.div>
 

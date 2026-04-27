@@ -3,40 +3,153 @@
  */
 
 export interface WebsiteConfig {
-  calendlyUrl: string;
-  // Add more fields as needed
+  branding: {
+    logo: {
+      textMain: string;
+      textSub: string;
+      icon: string;
+    };
+    colors: {
+      primary: string;
+      secondary: string;
+      accentBlue: string;
+      darkNavy: string;
+      lightBg: string;
+    };
+    calendlyUrl: string;
+  };
+  contactInfo: {
+    phoneMain: string;
+    email: string;
+    address: string;
+    workingHours: string;
+    socialLinks: {
+      facebook: string;
+      instagram: string;
+      youtube: string;
+      twitter: string;
+    };
+  };
+  sections: any;
+  pages: any;
 }
 
 let configCache: WebsiteConfig | null = null;
 
-export async function getWebsiteConfig(): Promise<WebsiteConfig> {
-  if (configCache) return configCache;
+function getTagText(parent: Element | Document, tagName: string, defaultValue = ''): string {
+  return parent.getElementsByTagName(tagName)[0]?.textContent || defaultValue;
+}
 
+function parseSection(xmlDoc: Document, sectionName: string) {
+  const section = xmlDoc.getElementsByTagName(sectionName)[0];
+  if (!section) return {};
+  
+  const result: any = {};
+  for (let i = 0; i < section.children.length; i++) {
+    const child = section.children[i];
+    if (child.children.length > 0 && child.tagName !== 'items' && child.tagName !== 'features' && child.tagName !== 'members' && child.tagName !== 'images') {
+        // Nested section (like branding/logo)
+        result[toCamelCase(child.tagName)] = parseNode(child);
+    } else if (child.tagName === 'items' || child.tagName === 'features' || child.tagName === 'members' || child.tagName === 'images') {
+        result[toCamelCase(child.tagName)] = Array.from(child.children).map(node => {
+            const item: any = {};
+            // Handle attributes
+            for(let j=0; j<node.attributes.length; j++) {
+                item[toCamelCase(node.attributes[j].name)] = node.attributes[j].value;
+            }
+            // Handle text content if any
+            if (node.children.length === 0) {
+                item.value = node.textContent;
+            } else {
+                // Handle nested children in items
+                for(let k=0; k<node.children.length; k++) {
+                    item[toCamelCase(node.children[k].tagName)] = node.children[k].textContent;
+                }
+            }
+            return item;
+        });
+    } else {
+      result[toCamelCase(child.tagName)] = child.textContent;
+    }
+  }
+  return result;
+}
+
+function parseNode(node: Element) {
+    const result: any = {};
+    for (let i = 0; i < node.children.length; i++) {
+        const child = node.children[i];
+        result[toCamelCase(child.tagName)] = child.textContent;
+    }
+    return result;
+}
+
+function toCamelCase(str: string) {
+  return str.replace(/_([a-z])/g, (g) => g[1].toUpperCase());
+}
+
+export async function fetchWebsiteConfig(): Promise<WebsiteConfig> {
   try {
-    const response = await fetch('/website-config.xml');
+    const response = await fetch('/website-config.xml?t=' + Date.now());
     const text = await response.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(text, 'text/xml');
 
-    const calendlyUrl = xmlDoc.getElementsByTagName('calendly_url')[0]?.textContent || '';
+    const brandingNode = xmlDoc.getElementsByTagName('branding')[0];
+    const contactInfoNode = xmlDoc.getElementsByTagName('contact_info')[0];
+    const sectionsNode = xmlDoc.getElementsByTagName('sections')[0];
+    const pagesNode = xmlDoc.getElementsByTagName('pages')[0];
 
-    configCache = {
-      calendlyUrl,
+    const config: WebsiteConfig = {
+      branding: {
+        logo: parseNode(brandingNode.getElementsByTagName('logo')[0]),
+        colors: parseNode(brandingNode.getElementsByTagName('colors')[0]),
+        calendlyUrl: getTagText(brandingNode, 'calendly_url'),
+      },
+      contactInfo: {
+        phoneMain: getTagText(contactInfoNode, 'phone_main'),
+        email: getTagText(contactInfoNode, 'email'),
+        address: getTagText(contactInfoNode, 'address'),
+        workingHours: getTagText(contactInfoNode, 'working_hours'),
+        socialLinks: parseNode(contactInfoNode.getElementsByTagName('social_links')[0]),
+      },
+      sections: {},
+      pages: {}
     };
 
-    return configCache;
+    // Parse all sections dynamically
+    if (sectionsNode) {
+        for (let i = 0; i < sectionsNode.children.length; i++) {
+            const section = sectionsNode.children[i];
+            config.sections[toCamelCase(section.tagName)] = parseSection(xmlDoc, section.tagName);
+        }
+    }
+
+    // Parse all pages dynamically
+    if (pagesNode) {
+        for (let i = 0; i < pagesNode.children.length; i++) {
+            const page = pagesNode.children[i];
+            config.pages[toCamelCase(page.tagName)] = parseSection(xmlDoc, page.tagName);
+        }
+    }
+
+    configCache = config;
+    return config;
   } catch (error) {
     console.error('Error loading website-config.xml:', error);
-    return {
-      calendlyUrl: 'https://calendly.com/your-dentist-link', // Fallback
-    };
+    throw error;
   }
+}
+
+export async function getWebsiteConfig(): Promise<WebsiteConfig> {
+    if (configCache) return configCache;
+    return fetchWebsiteConfig();
 }
 
 export async function openCalendly() {
   const config = await getWebsiteConfig();
   if (window.Calendly) {
-    window.Calendly.initPopupWidget({ url: config.calendlyUrl });
+    window.Calendly.initPopupWidget({ url: config.branding.calendlyUrl });
   } else {
     console.error('Calendly script not loaded');
   }

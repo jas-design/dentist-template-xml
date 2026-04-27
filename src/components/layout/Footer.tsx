@@ -1,8 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Youtube, Twitter, Phone, Mail, MapPin, Calendar, ArrowRight } from 'lucide-react';
+import { useConfig } from '../../context/ConfigContext';
 
 const Footer = () => {
+  const { config, loading } = useConfig();
+
+  if (loading || !config) return null;
+
+  const { branding, contactInfo, sections } = config;
+
   return (
     <footer className="bg-dark-navy text-white pt-20 pb-10">
       <div className="container mx-auto px-4">
@@ -11,23 +18,28 @@ const Footer = () => {
           <div>
             <Link to="/" className="flex items-center gap-3 mb-8 text-white">
               <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-display font-black text-2xl shadow-lg shadow-primary/20 transition-transform hover:scale-110">
-                D
+                {branding.logo.textMain.charAt(0)}
               </div>
               <div className="flex flex-col -gap-1">
                 <span className="text-xl lg:text-2xl font-display font-black text-white leading-none tracking-tight">
-                  Dental Care
+                  {branding.logo.textMain}
                 </span>
                 <span className="text-[10px] font-display font-bold text-primary tracking-[0.3em] uppercase leading-none">
-                  Clinic
+                  {branding.logo.textSub}
                 </span>
               </div>
             </Link>
             <p className="text-white/60 mb-10 max-w-xs leading-relaxed font-medium">
-              We provide the highest level of general, cosmetic, and specialist dental treatments in New York.
+              {sections.footer.description}
             </p>
             <div className="flex gap-4">
-              {[Facebook, Instagram, Youtube, Twitter].map((Icon, idx) => (
-                <a key={idx} href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300">
+              {[
+                { Icon: Facebook, url: contactInfo.socialLinks.facebook },
+                { Icon: Instagram, url: contactInfo.socialLinks.instagram },
+                { Icon: Youtube, url: contactInfo.socialLinks.youtube },
+                { Icon: Twitter, url: contactInfo.socialLinks.twitter },
+              ].map(({ Icon, url }, idx) => (
+                <a key={idx} href={url} className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-primary hover:border-primary transition-all duration-300">
                   <Icon size={16} />
                 </a>
               ))}
@@ -68,22 +80,22 @@ const Footer = () => {
             <ul className="space-y-6">
               <li className="flex gap-4 text-white/60 text-sm">
                 <MapPin size={20} className="text-primary shrink-0" />
-                <span className="font-bold">24/11 Robert Road , New York , USA</span>
+                <span className="font-bold">{contactInfo.address}</span>
               </li>
               <li className="flex gap-4 text-white/60 text-sm">
                 <Phone size={20} className="text-primary shrink-0" />
-                <span className="font-bold">+(123) 698-5245</span>
+                <span className="font-bold">{contactInfo.phoneMain}</span>
               </li>
               <li className="flex gap-4 text-white/60 text-sm">
                 <Mail size={20} className="text-primary shrink-0" />
-                <span className="font-bold">info@dentalcareclinic.com</span>
+                <span className="font-bold">{contactInfo.email}</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-slate-500 font-bold uppercase text-xs tracking-widest">Copyright © 2026 Dental Care Clinic. All Rights Reserved.</p>
+          <p className="text-slate-500 font-bold uppercase text-xs tracking-widest">{sections.footer.copyright}</p>
           <div className="flex gap-8 text-slate-500 font-bold uppercase text-xs tracking-widest">
             <a href="#" className="hover:text-primary transition-all">Terms of Use</a>
             <a href="#" className="hover:text-primary transition-all">Privacy Policy</a>

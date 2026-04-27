@@ -2,10 +2,17 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { WHY_CHOOSE_US } from '../../constants';
 import * as LucideIcons from 'lucide-react';
+import { useConfig } from '../../context/ConfigContext';
 
 const Diagnosis = () => {
-  const leftFeatures = WHY_CHOOSE_US.slice(0, 3);
-  const rightFeatures = WHY_CHOOSE_US.slice(3, 6);
+  const { config, loading } = useConfig();
+
+  if (loading || !config) return null;
+
+  const section = config.sections.diagnosis;
+  const features = section.features || WHY_CHOOSE_US;
+  const leftFeatures = features.slice(0, 3);
+  const rightFeatures = features.slice(3, 6);
 
   return (
     <section className="py-24 bg-[#f4faff] overflow-hidden relative">
@@ -26,24 +33,24 @@ const Diagnosis = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h5 className="text-[#3399a6] font-bold tracking-widest uppercase mb-4 text-[12px] flex items-center justify-center gap-2">
-            + WHY CHOOSE US
+            + {section.tagline}
           </h5>
           <h2 className="text-4xl lg:text-5xl font-black text-[#1a5b6e] mb-6 tracking-tight">
-            Diagnosis of <span className="text-[#1a5b6e]">Dental Diseases</span>
+            {section.title}
           </h2>
           <p className="text-slate-500 max-w-2xl mx-auto leading-relaxed font-semibold text-sm">
-            We are committed to sustainability, eco-friendly initiatives.
+            {section.description}
           </p>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 items-center max-w-7xl mx-auto">
           {/* Left Column */}
           <div className="space-y-16">
-            {leftFeatures.map((feature, idx) => {
+            {leftFeatures.map((feature: any, idx: number) => {
               const Icon = (LucideIcons as any)[feature.icon] || LucideIcons.CheckCircle2;
               return (
                 <motion.div
-                  key={feature.id}
+                  key={idx}
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -86,7 +93,7 @@ const Diagnosis = () => {
                className="relative z-10 w-full flex justify-center"
              >
                <img 
-                 src="https://img.freepik.com/premium-photo/high-quality-3d-model-human-tooth-it-can-be-used-health-projects_545445-3127.jpg?w=800" 
+                 src={section.toothImage} 
                  alt="3D Tooth"
                  className="w-64 h-64 lg:w-72 lg:h-72 object-contain filter mix-blend-multiply drop-shadow-[0_20px_50px_rgba(51,153,166,0.2)]"
                />
@@ -95,11 +102,11 @@ const Diagnosis = () => {
 
           {/* Right Column */}
           <div className="space-y-16">
-            {rightFeatures.map((feature, idx) => {
+            {rightFeatures.map((feature: any, idx: number) => {
               const Icon = (LucideIcons as any)[feature.icon] || LucideIcons.CheckCircle2;
               return (
                 <motion.div
-                  key={feature.id}
+                  key={idx}
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
