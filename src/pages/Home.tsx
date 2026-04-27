@@ -6,6 +6,7 @@ import About from '../components/sections/About';
 import VideoPromo from '../components/sections/VideoPromo';
 import Diagnosis from '../components/sections/Diagnosis';
 import Stats from '../components/sections/Stats';
+import BeforeAfter from '../components/sections/BeforeAfter';
 import ProcessAccordion from '../components/sections/ProcessAccordion';
 import Team from '../components/sections/Team';
 import Testimonials from '../components/sections/Testimonials';
@@ -21,6 +22,7 @@ const Home = () => {
       <VideoPromo />
       <Diagnosis />
       <Stats />
+      <BeforeAfter />
       <ProcessAccordion />
       <Team />
       <Testimonials />

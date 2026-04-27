@@ -10,9 +10,9 @@ const Footer = () => {
           {/* Col 1 */}
           <div>
             <Link to="/" className="flex items-center gap-3 mb-8 text-white">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary">
-                <path d="M12 3C10.5 3 9 3.5 8 4.5C7 5.5 6.5 7 6.5 9C6.5 11 7.5 13 9 14.5C9.5 15 10 16 10 17V19C10 20.5 11 21.5 12 21.5C13 21.5 14 20.5 14 19V17C14 16 14.5 15 15 14.5C16.5 13 17.5 11 17.5 9C17.5 7 17 5.5 16 4.5C15 3.5 13.5 3 12 3Z" />
-              </svg>
+              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-display font-black text-2xl shadow-lg shadow-primary/20 transition-transform hover:scale-110">
+                D
+              </div>
               <div className="flex flex-col -gap-1">
                 <span className="text-xl lg:text-2xl font-display font-black text-white leading-none tracking-tight">
                   Dental Care

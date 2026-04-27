@@ -8,23 +8,37 @@ const Diagnosis = () => {
   const rightFeatures = WHY_CHOOSE_US.slice(3, 6);
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-24 bg-[#f4faff] overflow-hidden relative">
+      {/* Background Decorations */}
+      <div className="absolute top-20 left-10 text-[#3399a6]/10 rotate-12">
+        <LucideIcons.Plus size={80} strokeWidth={1} />
+      </div>
+      <div className="absolute bottom-20 right-10 text-[#3399a6]/10 -rotate-12">
+        <LucideIcons.Plus size={60} strokeWidth={1} />
+      </div>
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 text-[#3399a6]/5 translate-x-[-20%]">
+        <LucideIcons.Star size={120} fill="currentColor" stroke="none" />
+      </div>
+      <div className="absolute bottom-0 right-0 p-8 text-[#3399a6]/10">
+        <LucideIcons.Sparkle size={100} />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
-          <h5 className="text-primary font-bold tracking-widest uppercase mb-4 text-sm flex items-center justify-center gap-2">
-            <span className="w-8 h-[2px] bg-primary"></span> Why Choose Us
+          <h5 className="text-[#3399a6] font-bold tracking-widest uppercase mb-4 text-[12px] flex items-center justify-center gap-2">
+            + WHY CHOOSE US
           </h5>
-          <h2 className="section-title mb-4 font-black lg:text-6xl">
-            Diagnosis of <span className="text-primary">Dental Diseases</span>
+          <h2 className="text-4xl lg:text-5xl font-black text-[#1a5b6e] mb-6 tracking-tight">
+            Diagnosis of <span className="text-[#1a5b6e]">Dental Diseases</span>
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto leading-relaxed font-bold">
+          <p className="text-slate-500 max-w-2xl mx-auto leading-relaxed font-semibold text-sm">
             We are committed to sustainability, eco-friendly initiatives.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12 items-center">
+        <div className="grid lg:grid-cols-3 gap-8 items-center max-w-7xl mx-auto">
           {/* Left Column */}
-          <div className="space-y-12">
+          <div className="space-y-16">
             {leftFeatures.map((feature, idx) => {
               const Icon = (LucideIcons as any)[feature.icon] || LucideIcons.CheckCircle2;
               return (
@@ -34,14 +48,14 @@ const Diagnosis = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex items-center gap-6 text-right lg:flex-row-reverse"
+                  className="flex items-center gap-6 justify-end text-right"
                 >
-                  <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center text-primary shrink-0">
-                    <Icon size={32} strokeWidth={1.5} />
-                  </div>
                   <div>
-                    <h4 className="text-xl font-display font-black text-dark-navy mb-2">{feature.title}</h4>
-                    <p className="text-slate-400 text-sm font-medium leading-relaxed">{feature.description}</p>
+                    <h4 className="text-lg font-black text-[#1a5b6e] mb-2">{feature.title}</h4>
+                    <p className="text-slate-400 text-[13px] font-bold leading-relaxed max-w-[280px] ml-auto">{feature.description}</p>
+                  </div>
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center text-[#3399a6] shrink-0 border border-slate-100 bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)]">
+                    <Icon size={28} strokeWidth={1.5} />
                   </div>
                 </motion.div>
               );
@@ -49,26 +63,38 @@ const Diagnosis = () => {
           </div>
 
           {/* Center Column - Tooth Image */}
-          <div className="relative flex items-center justify-center p-12">
-             {/* Decorative circles */}
-             <div className="absolute inset-0 border-[20px] border-primary/5 rounded-full animate-[spin_20s_linear_infinite]" />
-             <div className="absolute inset-20 border border-primary/10 rounded-full border-dashed" />
+          <div className="relative flex items-center justify-center py-12">
+             {/* Decorative Ring with Dots */}
+             <div className="absolute w-[360px] h-[360px] border border-[#3399a6]/20 rounded-full flex items-center justify-center">
+                {/* Dots around the circle */}
+                {[...Array(6)].map((_, i) => (
+                  <div 
+                    key={i}
+                    className="absolute w-2 h-2 bg-[#3399a6] rounded-full"
+                    style={{
+                      transform: `rotate(${i * 60}deg) translateY(-180px)`
+                    }}
+                  />
+                ))}
+                {/* Inner white glow */}
+                <div className="w-[300px] h-[300px] bg-white rounded-full shadow-[0_0_100px_-20px_rgba(51,153,166,0.3)] opacity-60" />
+             </div>
              
              <motion.div
-               animate={{ y: [0, -20, 0] }}
-               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-               className="relative z-10"
+               animate={{ y: [0, -15, 0] }}
+               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+               className="relative z-10 w-full flex justify-center"
              >
                <img 
-                 src="https://cdn-icons-png.flaticon.com/512/1048/1048946.png" // Placeholder for a tooth 3D model icon
-                 alt="Tooth"
-                 className="w-64 h-64 object-contain drop-shadow-[0_20px_50px_rgba(51,153,166,0.3)] filter brightness-110"
+                 src="https://img.freepik.com/premium-photo/high-quality-3d-model-human-tooth-it-can-be-used-health-projects_545445-3127.jpg?w=800" 
+                 alt="3D Tooth"
+                 className="w-64 h-64 lg:w-72 lg:h-72 object-contain filter mix-blend-multiply drop-shadow-[0_20px_50px_rgba(51,153,166,0.2)]"
                />
              </motion.div>
           </div>
 
           {/* Right Column */}
-          <div className="space-y-12">
+          <div className="space-y-16">
             {rightFeatures.map((feature, idx) => {
               const Icon = (LucideIcons as any)[feature.icon] || LucideIcons.CheckCircle2;
               return (
@@ -78,14 +104,14 @@ const Diagnosis = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex items-center gap-6"
+                  className="flex items-center gap-6 text-left"
                 >
-                  <div className="w-16 h-16 bg-primary/5 rounded-2xl flex items-center justify-center text-primary shrink-0">
-                    <Icon size={32} strokeWidth={1.5} />
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center text-[#3399a6] shrink-0 border border-slate-100 bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)]">
+                    <Icon size={28} strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h4 className="text-xl font-display font-black text-dark-navy mb-2">{feature.title}</h4>
-                    <p className="text-slate-400 text-sm font-medium leading-relaxed">{feature.description}</p>
+                    <h4 className="text-lg font-black text-[#1a5b6e] mb-2">{feature.title}</h4>
+                    <p className="text-slate-400 text-[13px] font-bold leading-relaxed max-w-[280px]">{feature.description}</p>
                   </div>
                 </motion.div>
               );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Calendar, ChevronDown } from 'lucide-react';
+import { Menu, X, Phone, Calendar } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const Header = () => {
@@ -25,14 +25,11 @@ const Header = () => {
   ];
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${(isScrolled || location.pathname !== '/') ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <div className="text-primary">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 3C10.5 3 9 3.5 8 4.5C7 5.5 6.5 7 6.5 9C6.5 11 7.5 13 9 14.5C9.5 15 10 16 10 17V19C10 20.5 11 21.5 12 21.5C13 21.5 14 20.5 14 19V17C14 16 14.5 15 15 14.5C16.5 13 17.5 11 17.5 9C17.5 7 17 5.5 16 4.5C15 3.5 13.5 3 12 3Z" />
-              <path d="M12 8V11" strokeOpacity="0.4" />
-            </svg>
+          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-display font-black text-2xl shadow-lg shadow-primary/20 transition-transform hover:scale-110">
+            D
           </div>
           <div className="flex flex-col -gap-1">
             <span className="text-xl lg:text-2xl font-display font-black text-dark-navy leading-none tracking-tight">
@@ -55,20 +52,7 @@ const Header = () => {
               {link.name}
             </Link>
           ))}
-          <div className="relative group">
-            <button className="nav-link text-sm font-bold tracking-tight flex items-center gap-1 first-letter:uppercase text-dark-navy group-hover:text-primary">
-              Pages <ChevronDown size={14} />
-            </button>
-            <div className="absolute top-full left-0 mt-2 w-56 bg-white shadow-2xl rounded-2xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 border border-slate-50">
-              <div className="p-4 space-y-2">
-                {['Expert Dentists Team', 'Services', 'Price Plan', 'Blogs', 'Faq', 'Contact Us', 'Login', 'Register'].map((p) => (
-                  <Link key={p} to="#" className="block px-4 py-2 text-sm font-bold text-slate-600 hover:text-primary hover:bg-primary/5 rounded-xl transition-all">
-                    {p}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
+
           <Link to="/contact" className="px-6 py-3 bg-primary text-white rounded-full font-bold text-sm tracking-tight hover:brightness-110 transition-all flex items-center gap-2 shadow-lg shadow-primary/20">
             Book Appointment <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center"><Calendar size={14} /></div>
           </Link>
@@ -99,11 +83,9 @@ const Header = () => {
               className="fixed right-0 top-0 h-full w-4/5 max-w-sm bg-white z-[70] p-6 shadow-2xl"
             >
               <div className="flex justify-between items-center mb-8">
-                <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-                  <div className="text-primary">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 3C10.5 3 9 3.5 8 4.5C7 5.5 6.5 7 6.5 9C6.5 11 7.5 13 9 14.5C9.5 15 10 16 10 17V19C10 20.5 11 21.5 12 21.5C13 21.5 14 20.5 14 19V17C14 16 14.5 15 15 14.5C16.5 13 17.5 11 17.5 9C17.5 7 17 5.5 16 4.5C15 3.5 13.5 3 12 3Z" />
-                    </svg>
+                <Link to="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
+                  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-display font-black text-base shadow-md">
+                    D
                   </div>
                   <div className="flex flex-col -gap-1">
                     <span className="text-lg font-display font-black text-dark-navy leading-none tracking-tight">
