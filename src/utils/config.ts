@@ -90,7 +90,9 @@ function toCamelCase(str: string) {
 
 export async function fetchWebsiteConfig(): Promise<WebsiteConfig> {
   try {
-    const response = await fetch('/website-config.xml?t=' + Date.now());
+    const baseUrl = import.meta.env.BASE_URL || '/';
+    const configUrl = `${baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'}website-config.xml?t=${Date.now()}`;
+    const response = await fetch(configUrl);
     const text = await response.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(text, 'text/xml');
