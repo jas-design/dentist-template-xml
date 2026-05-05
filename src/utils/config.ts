@@ -43,17 +43,17 @@ function getTagText(parent: Element | Document, tagName: string, defaultValue = 
   return parent.getElementsByTagName(tagName)[0]?.textContent || defaultValue;
 }
 
-function parseSection(xmlDoc: Document, sectionName: string) {
-  const section = xmlDoc.getElementsByTagName(sectionName)[0];
+function parseSection(sectionElement: Element) {
+  const section = sectionElement;
   if (!section) return {};
   
   const result: any = {};
   for (let i = 0; i < section.children.length; i++) {
     const child = section.children[i];
-    if (child.children.length > 0 && child.tagName !== 'items' && child.tagName !== 'features' && child.tagName !== 'members' && child.tagName !== 'images') {
+    if (child.children.length > 0 && child.tagName !== 'items' && child.tagName !== 'features' && child.tagName !== 'members' && child.tagName !== 'images' && child.tagName !== 'transformations') {
         // Nested section (like branding/logo)
         result[toCamelCase(child.tagName)] = parseNode(child);
-    } else if (child.tagName === 'items' || child.tagName === 'features' || child.tagName === 'members' || child.tagName === 'images') {
+    } else if (child.tagName === 'items' || child.tagName === 'features' || child.tagName === 'members' || child.tagName === 'images' || child.tagName === 'transformations') {
         result[toCamelCase(child.tagName)] = Array.from(child.children).map(node => {
             const item: any = {};
             // Handle attributes
@@ -134,7 +134,7 @@ export async function fetchWebsiteConfig(): Promise<WebsiteConfig> {
     if (sectionsNode) {
         for (let i = 0; i < sectionsNode.children.length; i++) {
             const section = sectionsNode.children[i];
-            config.sections[toCamelCase(section.tagName)] = parseSection(xmlDoc, section.tagName);
+            config.sections[toCamelCase(section.tagName)] = parseSection(section);
         }
     }
 
@@ -142,7 +142,7 @@ export async function fetchWebsiteConfig(): Promise<WebsiteConfig> {
     if (pagesNode) {
         for (let i = 0; i < pagesNode.children.length; i++) {
             const page = pagesNode.children[i];
-            config.pages[toCamelCase(page.tagName)] = parseSection(xmlDoc, page.tagName);
+            config.pages[toCamelCase(page.tagName)] = parseSection(page);
         }
     }
 
