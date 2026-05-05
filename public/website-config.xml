@@ -2,11 +2,11 @@
 <website_config>
     <branding>
         <logo>
+            <use_image_logo>true</use_image_logo>
             <text_main>Dental Care PRO</text_main>
             <text_sub>Expert Dentistry</text_sub>
             <icon>Calendar</icon>
-            <image_url>images/image-1777942121182-903359586.png</image_url>
-            <use_image_logo>true</use_image_logo>
+            <image_url>images/logo.png</image_url>            
         </logo>
         <colors>
             <primary>#20A5AE</primary>

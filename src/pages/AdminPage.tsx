@@ -287,6 +287,7 @@ function ConfigField({ node, label, hideLabel }: { node: Element, label: string,
                        value.includes('images.unsplash.com');
 
   const isTextArea = value.length > 50 || node.tagName.toLowerCase().includes('desc') || node.tagName.toLowerCase().includes('content');
+  const isBoolean = value.toLowerCase() === 'true' || value.toLowerCase() === 'false';
 
   return (
     <div className="group space-y-2.5">
@@ -295,9 +296,40 @@ function ConfigField({ node, label, hideLabel }: { node: Element, label: string,
           {label}
         </label>
       )}
-      <div className="flex gap-3">
+      <div className="flex gap-4 items-center">
+        {isImageField && value && (/\.(jpg|jpeg|png|gif|svg|webp)$/i.test(value) || value.includes('images.unsplash.com') || value.startsWith('data:image/')) && (
+          <div className="w-14 h-14 rounded-2xl border border-gray-200 overflow-hidden bg-white shrink-0 shadow-sm group-focus-within:border-primary/30 transition-colors flex items-center justify-center p-1">
+            <img 
+              src={value.startsWith('http') || value.startsWith('data:') ? value : `/${value}`} 
+              alt="Preview" 
+              className="max-w-full max-h-full object-contain rounded-lg"
+            />
+          </div>
+        )}
         <div className="flex-grow relative">
-          {isTextArea ? (
+          {isBoolean ? (
+            <div className="flex items-center h-[52px]">
+              <button
+                onClick={() => {
+                  const newVal = value === 'true' ? 'false' : 'true';
+                  setValue(newVal);
+                  node.textContent = newVal;
+                }}
+                className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-4 focus:ring-primary/10 ${
+                  value === 'true' ? 'bg-primary' : 'bg-gray-200'
+                }`}
+              >
+                <span
+                  className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform shadow-sm ${
+                    value === 'true' ? 'translate-x-7' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+              <span className="ml-3 text-sm font-bold text-gray-500 uppercase tracking-wider">
+                {value === 'true' ? 'Enabled' : 'Disabled'}
+              </span>
+            </div>
+          ) : isTextArea ? (
             <textarea
               value={value}
               onChange={handleChange}
