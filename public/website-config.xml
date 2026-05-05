@@ -2,7 +2,7 @@
 <website_config>
     <branding>
         <logo>
-            <use_image_logo>true</use_image_logo>
+            <use_image_logo>false</use_image_logo>
             <text_main>Dental Care PRO</text_main>
             <text_sub>Expert Dentistry</text_sub>
             <icon>Calendar</icon>
