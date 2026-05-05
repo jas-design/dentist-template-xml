@@ -8,7 +8,7 @@ const Footer = () => {
 
   if (loading || !config) return null;
 
-  const { branding, contactInfo, sections } = config;
+  const { branding, contactInfo, sections, navigation } = config;
 
   return (
     <footer className="bg-dark-navy text-white pt-20 pb-10">
@@ -60,10 +60,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-black mb-8 text-white">Services</h4>
             <ul className="space-y-4">
-              {['Dental Care', 'Dental Implants', 'Cosmetic Dentistry', 'Root Canal', 'Invisalign'].map((item) => (
-                <li key={item}>
-                  <Link to="#" className="text-white/60 hover:text-primary transition-all font-bold text-sm">
-                    {item}
+              {(sections.services.items || []).map((item: any, idx: number) => (
+                <li key={idx}>
+                  <Link to="/services" className="text-white/60 hover:text-primary transition-all font-bold text-sm">
+                    {item.title}
                   </Link>
                 </li>
               ))}
@@ -74,10 +74,10 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-black mb-8 text-white">Information</h4>
             <ul className="space-y-4">
-              {['About Us', 'Expert Dentists', 'Latest News', 'Contact Us', 'Pricing'].map((item) => (
-                <li key={item}>
-                  <Link to="#" className="text-white/60 hover:text-primary transition-all font-bold text-sm">
-                    {item}
+              {(navigation || []).map((item: any, idx: number) => (
+                <li key={idx}>
+                  <Link to={item.path} className="text-white/60 hover:text-primary transition-all font-bold text-sm">
+                    {item.name}
                   </Link>
                 </li>
               ))}

@@ -32,6 +32,7 @@ export interface WebsiteConfig {
       twitter: string;
     };
   };
+  navigation: any[];
   sections: any;
   pages: any;
 }
@@ -103,6 +104,7 @@ export async function fetchWebsiteConfig(): Promise<WebsiteConfig> {
     const contactInfoNode = xmlDoc.getElementsByTagName('contact_info')[0];
     const sectionsNode = xmlDoc.getElementsByTagName('sections')[0];
     const pagesNode = xmlDoc.getElementsByTagName('pages')[0];
+    const navigationNode = xmlDoc.getElementsByTagName('navigation')[0];
 
     const config: WebsiteConfig = {
       branding: {
@@ -117,6 +119,13 @@ export async function fetchWebsiteConfig(): Promise<WebsiteConfig> {
         workingHours: getTagText(contactInfoNode, 'working_hours'),
         socialLinks: parseNode(contactInfoNode.getElementsByTagName('social_links')[0]),
       },
+      navigation: navigationNode ? Array.from(navigationNode.children).map(node => {
+        const item: any = {};
+        for(let i=0; i<node.attributes.length; i++) {
+          item[toCamelCase(node.attributes[i].name)] = node.attributes[i].value;
+        }
+        return item;
+      }) : [],
       sections: {},
       pages: {}
     };

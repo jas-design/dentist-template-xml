@@ -2,27 +2,36 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { BLOG_POSTS } from '../../constants';
 import { Calendar, ArrowRight, User } from 'lucide-react';
+import { useConfig } from '../../context/ConfigContext';
+import { resolveImageUrl } from '../../utils/config';
 
 const Blog = () => {
+  const { config, loading } = useConfig();
+
+  if (loading || !config) return null;
+
+  const section = config.sections.blog;
+  const posts = section.items || BLOG_POSTS;
+
   return (
     <section className="py-24 bg-white" id="blog">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h5 className="text-primary font-bold tracking-widest uppercase mb-4 text-sm flex items-center justify-center gap-2">
-            <span className="w-8 h-[2px] bg-primary"></span> Latest News
+            <span className="w-8 h-[2px] bg-primary"></span> {section.tagline}
           </h5>
           <h2 className="section-title mb-4 font-black lg:text-6xl">
-            Our Latest <span className="text-primary">Direct Health Blog.</span>
+            {section.title.split('Blog.')[0]} <span className="text-primary">Blog.</span>
           </h2>
           <p className="text-slate-400 max-w-2xl mx-auto leading-relaxed font-bold">
-            We are committed to sustainability, eco-friendly initiatives.
+            {section.description}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {BLOG_POSTS.map((post, index) => (
+          {posts.map((post: any, index: number) => (
             <motion.div
-              key={post.id}
+              key={post.id || index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -31,7 +40,7 @@ const Blog = () => {
             >
               <div className="relative h-64 overflow-hidden m-4 rounded-[2rem]">
                 <img
-                  src={post.image}
+                  src={resolveImageUrl(post.image)}
                   alt={post.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"

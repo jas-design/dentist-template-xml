@@ -8,7 +8,6 @@ import { useConfig } from '../../context/ConfigContext';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [logoExists, setLogoExists] = useState(false);
   const location = useLocation();
   const { config, loading } = useConfig();
 
@@ -20,23 +19,11 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (!config) return;
-    
-    // Check if logo exists
-    const logoUrl = config.branding.logo.imageUrl || 'images/logo.png';
-    const resolvedUrl = resolveImageUrl(logoUrl);
-    const img = new Image();
-    img.onload = () => setLogoExists(true);
-    img.onerror = () => setLogoExists(false);
-    img.src = resolvedUrl;
-  }, [config]);
-
   if (loading || !config) return null;
 
-  const { branding, contactInfo } = config;
+  const { branding, contactInfo, navigation } = config;
 
-  const navLinks = [
+  const navLinks = navigation && navigation.length > 0 ? navigation : [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
@@ -46,11 +33,10 @@ const Header = () => {
 
   const Logo = ({ isMobile = false }) => {
     const useImage = branding.logo.useImageLogo === 'true';
-    const showImage = useImage && logoExists;
 
     return (
       <Link to="/" className="flex items-center gap-3" onClick={isMobile ? () => setIsOpen(false) : undefined}>
-        {showImage ? (
+        {useImage ? (
           <img 
             src={resolveImageUrl(branding.logo.imageUrl || 'images/logo.png')} 
             alt="Logo" 
