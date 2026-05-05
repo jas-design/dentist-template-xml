@@ -2,13 +2,14 @@
 <website_config>
     <branding>
         <logo>
-            <text_main>Dental Care</text_main>
-            <text_sub>Dentist</text_sub>
+            <text_main>Dental Care PRO</text_main>
+            <text_sub>Expert Dentistry</text_sub>
             <icon>Calendar</icon>
+            <image_url>images/image-1777942121182-903359586.png</image_url>
             <use_image_logo>true</use_image_logo>
         </logo>
         <colors>
-            <primary>#3399A6</primary>
+            <primary>#20A5AE</primary>
             <secondary>#988127</secondary>
             <accent_blue>#407BFF</accent_blue>
             <dark_navy>#1A242F</dark_navy>
@@ -18,7 +19,7 @@
     </branding>
 
     <contact_info>
-        <phone_main>(+01) 987 828 745</phone_main>
+        <phone_main>(+01) 000 000 000</phone_main>
         <email>info@dentalcare.com</email>
         <address>New York, USA</address>
         <working_hours>Mon to Sat 9:00AM to 9:00PM</working_hours>
@@ -31,11 +32,11 @@
     </contact_info>
 
     <navigation>
-        <link name="Home" path="/" />
-        <link name="About" path="/about" />
-        <link name="Services" path="/services" />
-        <link name="Gallery" path="/gallery" />
-        <link name="Contact" path="/contact" />
+        <link name="Home" path="/"/>
+        <link name="About" path="/about"/>
+        <link name="Services" path="/services"/>
+        <link name="Gallery" path="/gallery"/>
+        <link name="Contact" path="/contact"/>
     </navigation>
 
     <sections>
@@ -115,20 +116,20 @@
             <description>We are committed to sustainability, eco-friendly initiatives.</description>
             <tooth_image>images/tooth.webp</tooth_image>
             <features>
-                <feature icon="Users" title="Experienced Doctor" description="The goal of our clinic is to provide friendly, caring dentistry and the." />
-                <feature icon="Heart" title="Personalized Care" description="The goal of our clinic is to provide friendly, caring dentistry and the." />
-                <feature icon="CreditCard" title="Flexible Payment Options" description="The goal of our clinic is to provide friendly, caring dentistry and the." />
-                <feature icon="Clock" title="Emergency Services" description="The goal of our clinic is to provide friendly, caring dentistry and the." />
-                <feature icon="Star" title="Positive Patient Reviews" description="The goal of our clinic is to provide friendly, caring dentistry and the." />
-                <feature icon="Cpu" title="Latest Technology" description="The goal of our clinic is to provide friendly, caring dentistry and the." />
+                <feature icon="Users" title="Experienced Doctor" description="The goal of our clinic is to provide friendly, caring dentistry and the."/>
+                <feature icon="Heart" title="Personalized Care" description="The goal of our clinic is to provide friendly, caring dentistry and the."/>
+                <feature icon="CreditCard" title="Flexible Payment Options" description="The goal of our clinic is to provide friendly, caring dentistry and the."/>
+                <feature icon="Clock" title="Emergency Services" description="The goal of our clinic is to provide friendly, caring dentistry and the."/>
+                <feature icon="Star" title="Positive Patient Reviews" description="The goal of our clinic is to provide friendly, caring dentistry and the."/>
+                <feature icon="Cpu" title="Latest Technology" description="The goal of our clinic is to provide friendly, caring dentistry and the."/>
             </features>
         </diagnosis>
 
         <stats>
-            <stat label="Insurance Covered" value="75+" description="Our team loves dental trivia. Did you know that tooth enamel." />
-            <stat label="Realized Projects" value="2K" description="Our team loves dental trivia. Did you know that tooth enamel." />
-            <stat label="Happy Customers" value="22K" description="Our team loves dental trivia. Did you know that tooth enamel." />
-            <stat label="Experience Doctors" value="18+" description="Our team loves dental trivia. Did you know that tooth enamel." />
+            <stat label="Insurance Covered" value="75+" description="Our team loves dental trivia. Did you know that tooth enamel."/>
+            <stat label="Realized Projects" value="2K" description="Our team loves dental trivia. Did you know that tooth enamel."/>
+            <stat label="Happy Customers" value="22K" description="Our team loves dental trivia. Did you know that tooth enamel."/>
+            <stat label="Experience Doctors" value="18+" description="Our team loves dental trivia. Did you know that tooth enamel."/>
         </stats>
 
         <before_after>
@@ -147,9 +148,9 @@
             <description>We are committed to sustainability, Our clinic practices eco-friendly initiatives like digital records to reduce paper waste and energy-efficient equipment.</description>
             <image>https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&amp;fit=crop&amp;q=80&amp;w=800&amp;h=1000</image>
             <items>
-                <item icon="Calendar" title="Book An Appointment" content="The goal of our clinic is to provide friendly, caring dentistry and the highest level of general, cosmetic, ents." />
-                <item icon="Heart" title="What Conditions Can Manual Therapy Treat?" content="The goal of our clinic is to provide friendly, caring dentistry and the highest level of general, cosmetic, ents." />
-                <item icon="Star" title="Expert Care" content="The goal of our clinic is to provide friendly, caring dentistry and the highest level of general, cosmetic, ents." />
+                <item icon="Calendar" title="Book An Appointment" content="The goal of our clinic is to provide friendly, caring dentistry and the highest level of general, cosmetic, ents."/>
+                <item icon="Heart" title="What Conditions Can Manual Therapy Treat?" content="The goal of our clinic is to provide friendly, caring dentistry and the highest level of general, cosmetic, ents."/>
+                <item icon="Star" title="Expert Care" content="The goal of our clinic is to provide friendly, caring dentistry and the highest level of general, cosmetic, ents."/>
             </items>
         </process_accordion>
 
@@ -158,10 +159,10 @@
             <title>Our Friendly Dentists Team</title>
             <description>We are committed to sustainability, eco-friendly initiatives.</description>
             <members>
-                <member id="1" name="Dr. Johan Joe" specialty="Lead Dentist" experience="15+" patients="2k+" image="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400" />
-                <member id="2" name="Dr. Alice Johnson" specialty="Senior Dentist" experience="12+" patients="1.5k+" image="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400" />
-                <member id="3" name="Dr. Alison Banson" specialty="Orthodontist" experience="10+" patients="1.2k+" image="https://images.unsplash.com/photo-1659353888906-adb3e0041693?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400" />
-                <member id="4" name="Dr. Christopher Case" specialty="Periodontist" experience="18+" patients="3k+" image="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400" />
+                <member id="1" name="Dr. Johan Joe" specialty="Lead Dentist" experience="15+" patients="2k+" image="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400"/>
+                <member id="2" name="Dr. Alice Johnson" specialty="Senior Dentist" experience="12+" patients="1.5k+" image="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400"/>
+                <member id="3" name="Dr. Alison Banson" specialty="Orthodontist" experience="10+" patients="1.2k+" image="https://images.unsplash.com/photo-1659353888906-adb3e0041693?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400"/>
+                <member id="4" name="Dr. Christopher Case" specialty="Periodontist" experience="18+" patients="3k+" image="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&amp;fit=crop&amp;q=80&amp;w=400&amp;h=400"/>
             </members>
         </team>
 
@@ -209,10 +210,10 @@
             <title>Frequently Asked Questions</title>
             <image>https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&amp;fit=crop&amp;q=80&amp;w=800&amp;h=800</image>
             <items>
-                <item q="Do you accept insurance?" a="Yes, we accept most major PPO dental insurance plans. Our team can help you verify your coverage and maximize your benefits during your first visit." />
-                <item q="Is dental treatment painful?" a="We prioritize patient comfort above all else. We use modern anesthesia and gentle techniques to ensure your treatment is as comfortable and pain-free as possible." />
-                <item q="Do you offer emergency dental care?" a="Absolutely. We offer same-day emergency appointments for trauma, severe pain, or any urgent dental concerns." />
-                <item q="How often should I visit the dentist?" a="For most patients, we recommend a professional cleaning and exam every six months to maintain optimal oral health and prevent problems before they start." />
+                <item q="Do you accept insurance?" a="Yes, we accept most major PPO dental insurance plans. Our team can help you verify your coverage and maximize your benefits during your first visit."/>
+                <item q="Is dental treatment painful?" a="We prioritize patient comfort above all else. We use modern anesthesia and gentle techniques to ensure your treatment is as comfortable and pain-free as possible."/>
+                <item q="Do you offer emergency dental care?" a="Absolutely. We offer same-day emergency appointments for trauma, severe pain, or any urgent dental concerns."/>
+                <item q="How often should I visit the dentist?" a="For most patients, we recommend a professional cleaning and exam every six months to maintain optimal oral health and prevent problems before they start."/>
             </items>
         </faq>
 

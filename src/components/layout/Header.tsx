@@ -17,16 +17,20 @@ const Header = () => {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    // Check if logo.png exists
-    const logoUrl = resolveImageUrl('images/logo.png');
+  useEffect(() => {
+    if (!config) return;
+    
+    // Check if logo exists
+    const logoUrl = config.branding.logo.imageUrl || 'images/logo.png';
+    const resolvedUrl = resolveImageUrl(logoUrl);
     const img = new Image();
     img.onload = () => setLogoExists(true);
     img.onerror = () => setLogoExists(false);
-    img.src = logoUrl;
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    img.src = resolvedUrl;
+  }, [config]);
 
   if (loading || !config) return null;
 
@@ -47,7 +51,11 @@ const Header = () => {
     return (
       <Link to="/" className="flex items-center gap-3" onClick={isMobile ? () => setIsOpen(false) : undefined}>
         {showImage ? (
-          <img src={resolveImageUrl('images/logo.png')} alt="Logo" className={`${isMobile ? 'h-8' : 'h-10 lg:h-12'} w-auto object-contain`} />
+          <img 
+            src={resolveImageUrl(branding.logo.imageUrl || 'images/logo.png')} 
+            alt="Logo" 
+            className={`${isMobile ? 'h-8' : 'h-10 lg:h-12'} w-auto object-contain`} 
+          />
         ) : (
           <>
             <div className={`${isMobile ? 'w-8 h-8 text-base' : 'w-10 h-10 text-2xl'} bg-primary rounded-xl flex items-center justify-center text-white font-display font-black shadow-lg shadow-primary/20 transition-transform hover:scale-110`}>

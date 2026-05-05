@@ -8,6 +8,8 @@ export interface WebsiteConfig {
       textMain: string;
       textSub: string;
       icon: string;
+      imageUrl: string;
+      useImageLogo: string;
     };
     colors: {
       primary: string;

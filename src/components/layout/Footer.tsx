@@ -17,17 +17,27 @@ const Footer = () => {
           {/* Col 1 */}
           <div>
             <Link to="/" className="flex items-center gap-3 mb-8 text-white">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-display font-black text-2xl shadow-lg shadow-primary/20 transition-transform hover:scale-110">
-                {branding.logo.textMain.charAt(0)}
-              </div>
-              <div className="flex flex-col -gap-1">
-                <span className="text-xl lg:text-2xl font-display font-black text-white leading-none tracking-tight">
-                  {branding.logo.textMain}
-                </span>
-                <span className="text-[10px] font-display font-bold text-primary tracking-[0.3em] uppercase leading-none">
-                  {branding.logo.textSub}
-                </span>
-              </div>
+              {branding.logo.useImageLogo === 'true' && branding.logo.imageUrl ? (
+                <img 
+                  src={branding.logo.imageUrl.startsWith('http') || branding.logo.imageUrl.startsWith('/') ? branding.logo.imageUrl : `/${branding.logo.imageUrl}`} 
+                  alt="Logo" 
+                  className="h-10 lg:h-12 w-auto object-contain brightness-0 invert" 
+                />
+              ) : (
+                <>
+                  <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-display font-black text-2xl shadow-lg shadow-primary/20 transition-transform hover:scale-110">
+                    {branding.logo.textMain.charAt(0)}
+                  </div>
+                  <div className="flex flex-col -gap-1">
+                    <span className="text-xl lg:text-2xl font-display font-black text-white leading-none tracking-tight">
+                      {branding.logo.textMain}
+                    </span>
+                    <span className="text-[10px] font-display font-bold text-primary tracking-[0.3em] uppercase leading-none">
+                      {branding.logo.textSub}
+                    </span>
+                  </div>
+                </>
+              )}
             </Link>
             <p className="text-white/60 mb-10 max-w-xs leading-relaxed font-medium">
               {sections.footer.description}
@@ -99,6 +109,7 @@ const Footer = () => {
           <div className="flex gap-8 text-slate-500 font-bold uppercase text-xs tracking-widest">
             <a href="#" className="hover:text-primary transition-all">Terms of Use</a>
             <a href="#" className="hover:text-primary transition-all">Privacy Policy</a>
+            <Link to="/admin" className="hover:text-primary transition-all">Admin</Link>
           </div>
         </div>
       </div>
