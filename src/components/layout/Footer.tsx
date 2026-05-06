@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, Instagram, Youtube, Twitter, Phone, Mail, MapPin, Calendar, ArrowRight } from 'lucide-react';
+import { resolveImageUrl } from '../../utils/config';
 import { useConfig } from '../../context/ConfigContext';
 
 const Footer = () => {
@@ -17,9 +18,9 @@ const Footer = () => {
           {/* Col 1 */}
           <div>
             <Link to="/" className="flex items-center gap-3 mb-8 text-white">
-              {branding.logo.useImageLogo === 'true' && branding.logo.imageUrl ? (
+              {branding.logo.useImageLogo === 'true' ? (
                 <img 
-                  src={branding.logo.imageUrl.startsWith('http') || branding.logo.imageUrl.startsWith('/') ? branding.logo.imageUrl : `/${branding.logo.imageUrl}`} 
+                  src={resolveImageUrl(branding.logo.imageUrl || 'images/logo.png')} 
                   alt="Logo" 
                   className="h-10 lg:h-12 w-auto object-contain brightness-0 invert" 
                 />
