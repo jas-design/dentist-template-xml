@@ -77,18 +77,20 @@ const Hero = () => {
               </div>
 
               {/* Floating Dentist Info Card */}
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1 }}
-                className="absolute top-1/2 -left-12 -translate-y-1/2 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 border border-slate-50 z-20"
-              >
-                <img src={section.doctorAvatar} className="w-12 h-12 rounded-full object-cover" referrerPolicy="no-referrer" />
-                <div>
-                  <h4 className="font-display font-black text-dark-navy text-sm">{section.doctorName}</h4>
-                  <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{section.doctorRole}</p>
-                </div>
-              </motion.div>
+              {section.doctorName && section.doctorAvatar && (
+                <motion.div 
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 1 }}
+                  className="absolute top-1/2 -left-12 -translate-y-1/2 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 border border-slate-50 z-20"
+                >
+                  <img src={section.doctorAvatar} className="w-12 h-12 rounded-full object-cover" referrerPolicy="no-referrer" />
+                  <div>
+                    <h4 className="font-display font-black text-dark-navy text-sm">{section.doctorName}</h4>
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{section.doctorRole}</p>
+                  </div>
+                </motion.div>
+              )}
 
               {/* Floating Dental Icons */}
               <div className="absolute top-1/4 -right-8 w-16 h-16 bg-white/40 backdrop-blur-sm rounded-2xl flex items-center justify-center text-primary border border-white/50 shadow-lg animate-pulse">
